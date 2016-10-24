@@ -1,0 +1,14 @@
+This is a simple program illustrate how one can use 'username' and 'passwd' 
+if he/she was identify on the server 
+
+1. simply type make to build 
+2. you need to chown to root of the executable
+3. you need add sticky to executable after 2 was done
+	chmod a+s a.out
+
+usage: 
+	a.out username passwd
+it  would tell you if the credit is same or not
+
+return :
+	0 if success, not 0 for otherwise  (not found, etc)
