@@ -1,6 +1,9 @@
 This is a simple program illustrate how one can use 'username' and 'passwd' 
 if he/she was identify on the server 
 
+
+dependency: 
+	libcrypt.so
 1. simply type make to build 
 2. you need to chown to root of the executable
 3. you need add sticky to executable after 2 was done
