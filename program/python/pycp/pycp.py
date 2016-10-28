@@ -14,16 +14,15 @@ sd.connect((addr,port));
 
 sd.send(rlocate);
 
-content=""
+f=open(locate,'wba')
 while True: 
 	rc=sd.recv(1024);
 	if not rc: 
 		break
-	content+=rc
+	f.write(rc)
 #	print rc
 	
 
-f=open(locate,'wb')
 f.write(content)
 f.close()
 

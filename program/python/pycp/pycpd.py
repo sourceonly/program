@@ -22,8 +22,9 @@ while True:
 			input.append(conn);	
 			print  "recv req from %s" % addr[0]
 		else:	
-			filename=i.recv(1024);  # simply we assume the filename is no longer than 1024
-			pair.append((filename,i,));
+			filename=i.recv(1024);  # simply we assume the filename is no longer than 1024	
+			f=open(filename,'rb')
+			pair.append((f,i,));
 			input.remove(i);	
 			output.append(i);
 	for j in w: 
@@ -32,15 +33,15 @@ while True:
 				to_send=p[1];
 				file_to_send=p[0];
 				break;
-		try:
-			fs=open(file_to_send,"rb");
-			to_send.sendall(fs.read());
-			fs.close()
-		except:
-			pass
-		output.remove(j)
-		pair.remove(p)
-		j.close();
+			
+		to_send_content=file_to_send.read(1024)
+		if to_send_content:
+			to_send.send(to_send_content)
+		else: 
+			file_to_send.close()
+			output.remove(j)
+			pair.remove(p)
+			j.close();
 	for k in e: 
 		pass
 
