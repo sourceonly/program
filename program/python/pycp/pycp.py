@@ -23,7 +23,6 @@ while True:
 #	print rc
 	
 
-f.write(content)
 f.close()
 
 
