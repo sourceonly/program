@@ -1,0 +1,19 @@
+1.this tool illustrate how one can use SOCK_STREAM
+to transfer file through AF_INET(IPv4)
+2. nonblock io is introduced
+
+
+TODO: 
+1.  one can use f.seek + f.tell to get the filesize, and calc the process 
+
+known bugs : 
+
+
+files more than 337M would have problem (usually broke at 337M or 338M or so, might be timeout? ) 
+reason is still unkonwn 
+
+
+usage:  no compile is needed but python is required
+	python pycpd.py  # as server 
+	python pycp.py  <host> <host_filelocation> <dest_filelocation>  # as client command line 
+
