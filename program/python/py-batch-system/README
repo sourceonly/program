@@ -1,0 +1,11 @@
+
+this is a project of how to deliver job in python 
+
+1. pysockserv:  a server which manage variaty queues and resource 
+2. pymonitor : 	handles incomming jobs, doing routing jobs.
+3. pycli.py  : 	a compute node 
+4. pystat    : list job current stats
+5. pysub     : a example how to submit jobs
+6. pynodes   : report node status
+7. config    : related config file key=value pair
+

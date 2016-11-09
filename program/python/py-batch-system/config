@@ -1,0 +1,4 @@
+server=192.168.0.90
+port=9001
+maxcpus=4
+authkey=12345
