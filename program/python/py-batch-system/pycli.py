@@ -35,7 +35,6 @@ hostname=socket.gethostname()
 	
 if __name__=="__main__":
 	while True:
-		
 		current=maxcpus
 		task_to_clean=[]
 		for i in cp.keys(): 	
@@ -50,7 +49,12 @@ if __name__=="__main__":
 				job.update({cp[i]['job']['jobid']:cp[i]['job']})
 				cp.pop(i)
 		res.update({hostname:current})
-		while not q.empty():
+
+
+
+
+
+		if not q.empty():
 			job_to_run=q.get()
 			
 			if job_to_run['cpus']>current: 
@@ -64,7 +68,7 @@ if __name__=="__main__":
 			cp[rc]['job']=job_to_run
 					
 			
-			time.sleep(0.1)
+                time.sleep(0.01)
 					
 						
 			
