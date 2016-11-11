@@ -72,6 +72,7 @@ class pycli():
 				pass
 			elif type(i.poll())==type(1)  	:
 				jobbody['status']='Finished'
+				jobbody['endtime']=time.time()
 				self.plist.pop(i)
 			self.send_message(jobid,jobbody);
 				
@@ -88,8 +89,10 @@ class pycli():
 			
 	def run_task(self,job): 
 		pc=subprocess.Popen(job['cmd'],shell=True)
+		job['starttime']=time.time()
 		job['status']='Running'
 		job['pid']=pc.pid
+		self.send_message(job['jobid'],job)
 		self.plist[pc]=job
 		return pc		
 	def is_runable(self,job): 
@@ -104,6 +107,7 @@ class pycli():
 		job=self.q_bu.get();
 		if self.is_runable(job): 
 			self.run_task(job);
+			
 		else: 
 			self.q_re.put(job);
 			
