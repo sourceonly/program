@@ -47,7 +47,7 @@ class pycli():
 	def send_message(self,jobid,dict): 
 		info={}
 		info[jobid]=dict.copy()
-		self.q_mess.put(info)
+		self.q_mess.put({'updatejob':info})
 	
 	def report_res(self): 
 		self.res_s.update({self.hostname:self.res})

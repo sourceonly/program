@@ -35,6 +35,9 @@ if __name__=="__main__":
 	p=q.__deepcopy__(10);
 	for i in p:
 		print "jobid:",i
-		for j in p[i]: 
+		keys=p[i].keys()
+		keys.sort()
+		for j in keys:
+			
 			print "\t%s=%s" % (str(j),str(p[i][j]))
 		

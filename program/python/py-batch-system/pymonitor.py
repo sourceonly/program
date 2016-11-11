@@ -58,6 +58,10 @@ while True:
 	while (not q_mess.empty()) : 
 		message=q_mess.get()
 		for i in message: 
-			job_list.update({i:message[i]})
+			if i=='updatejob':	
+				j=message[i]
+				for k in j :
+					job_list.update({k:j[k]})
+				
 	
 	time.sleep(0.1)
