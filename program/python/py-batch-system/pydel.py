@@ -1,4 +1,7 @@
 #!/usr/bin/python
+
+
+
 from multiprocessing.managers import BaseManager
 from multiprocessing import Queue
 
@@ -23,30 +26,14 @@ QueueManager.register('get_jobid'       )
 QueueManager.register('get_joblist'     )
 
 
-
 m=QueueManager(address=(server,port),authkey=authkey)
 m.connect()
 
 
-q=m.get_queue_in()
-j_id=m.get_jobid();
-jobid=j_id.__deepcopy__(1)['jobid']
-j_id.update({'jobid':jobid+1})
+q=m.get_queue_del()
 
-
-print jobid
-
-job={}
-job['jobname']='ABC'
-job['jobid']=jobid
-job['cpus']=2
-job['cmd']='sleep  100'
-job['status']='Queue'
-
-if __name__=="__main__":
-	q.put(job)
-
-
+import sys
+q.put(int(sys.argv[1]))
 
 
 
