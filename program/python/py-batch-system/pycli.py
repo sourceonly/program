@@ -22,7 +22,6 @@ class QueueManager(BaseManager): 	pass;
 
 QueueManager.register('get_queue_buffer')
 QueueManager.register('get_queue_in'    )
-QueueManager.register('get_queue_re'    )
 QueueManager.register('get_queue_queue' )
 QueueManager.register('get_queue_del'   )
 QueueManager.register('get_queue_mess'  )
@@ -37,8 +36,8 @@ class pycli():
 		m.connect();	
 		self.plist={};
 		self.q_bu=m.get_queue_buffer();
-		self.q_re=m.get_queue_re();
 		self.q_del=m.get_queue_del();
+		self.q_qu=m.get_queue_queue();
 		self.q_mess=m.get_queue_mess();
 		self.res_s=m.get_res()
 
@@ -104,20 +103,17 @@ class pycli():
 	def try_run(self): 
 		if self.q_bu.empty(): 
 			return 
-		job=self.q_bu.get();
+		p,job=self.q_bu.get();
 		if self.is_runable(job): 
 			self.run_task(job);
-			
 		else: 
-			self.q_re.put(job);
+			self.q_qu.put((p,job));
 			
 
 			
 	def serv_forever(self): 
 		while True:
 			print self.plist
-			print self.res
-	
 			self.try_del()
 			self.update_plist()
 			self.try_run()

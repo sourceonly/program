@@ -1,5 +1,7 @@
 from multiprocessing import Process, Queue
+import multiprocessing as mp
 from multiprocessing.managers import BaseManager
+import Queue
 import config
 
 conf=config.config('config')
@@ -8,13 +10,14 @@ port=int(conf.get_value('port'))
 authkey=conf.get_value('authkey')
 sched_buffer=int(conf.get_value('sched_buffer'))
 
+queue_in=mp.Queue();
 
-queue_buffer=Queue(sched_buffer);
-queue_in=Queue();
-queue_queue=Queue();
-queue_re=Queue();
-queue_del=Queue();
-queue_mess=Queue();
+queue_buffer=Queue.PriorityQueue(sched_buffer);
+queue_queue=Queue.PriorityQueue();
+
+
+queue_del=mp.Queue();
+queue_mess=mp.Queue();
 
 res  = {} ;
 jobid = {'jobid':1};
@@ -26,7 +29,6 @@ class QueueManager(BaseManager): pass
 
 QueueManager.register('get_queue_buffer',        callable=lambda: queue_buffer)
 QueueManager.register('get_queue_in'    ,        callable=lambda: queue_in    )
-QueueManager.register('get_queue_re'    ,        callable=lambda: queue_re    )
 QueueManager.register('get_queue_queue' ,        callable=lambda: queue_queue )
 QueueManager.register('get_queue_del'   ,        callable=lambda: queue_del   )
 QueueManager.register('get_queue_mess'  ,        callable=lambda: queue_mess  )

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from multiprocessing.managers import BaseManager
 from multiprocessing import Queue
-
+import sys
 
 import config
 
@@ -40,8 +40,9 @@ job={}
 job['jobname']='ABC'
 job['jobid']=jobid
 job['cpus']=2
-job['cmd']='sleep  100'
+job['cmd']='python test_this.py'
 job['status']='Queue'
+job['priority']=int(sys.argv[1])
 
 if __name__=="__main__":
 	q.put(job)

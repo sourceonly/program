@@ -16,7 +16,6 @@ class QueueManager(BaseManager): pass
 
 QueueManager.register('get_queue_buffer')
 QueueManager.register('get_queue_in'    )
-QueueManager.register('get_queue_re'    )
 QueueManager.register('get_queue_queue' )
 QueueManager.register('get_queue_del'   )
 QueueManager.register('get_res'         )
@@ -32,7 +31,6 @@ m.connect();
 q_in=m.get_queue_in()
 q_qu=m.get_queue_queue()
 q_bu=m.get_queue_buffer()
-q_re=m.get_queue_re()
 q_del=m.get_queue_del()	
 q_mess=m.get_queue_mess()
 
@@ -42,18 +40,20 @@ while True:
 	# get q_in and then record
 	while not q_in.empty(): 
 		job=q_in.get();
+		if job.has_key('priority'):
+			priority=-int(job['priority'])
+		else:
+			priority=0;
 		job_shadow=copy.deepcopy(job);
 		job_list.update({job_shadow['jobid']:job_shadow});
-		q_qu.put(job)
+		q_qu.put((priority,job))
 	
 	# do sched 
-	while (not q_re.empty()) and (not q_bu.full()): 
-		job=q_re.get()	;
-		q_bu.put(job)   ;
 	
 	while (not q_qu.empty()) and (not q_bu.full()): 
-		job=q_qu.get() ; 
-		q_bu.put(job)  ; 
+		pjob=q_qu.get() ; 
+		q_bu.put(pjob)  ; 
+		print pjob
 					
 	while (not q_mess.empty()) : 
 		message=q_mess.get()
