@@ -46,20 +46,20 @@
 %	 ABOUT ME
 %----------------------------------------------------------------------------------------
 
-\aboutme{to be complete
-}
-
+%% \aboutme{to be complete
+%% }
+\aboutme{}
 %----------------------------------------------------------------------------------------
 %	 SKILLS
 %----------------------------------------------------------------------------------------
 
 % Skill bar section, each skill must have a value between 0 an 6 (float)
-\skills{{Project Management/4.5},{Linux/5.0},{C/5.0},{Python/5.5},{Web,Java/1.0},{SQLs/2.0}}
+\skills{{Web,Java/1.0},{SQLs/2.0},{Linux/5.0},{C/5.0},{Python/5.5},{Distributed System/5.0},{Agile \& scrum/4.0}}
 
 %------------------------------------------------
 
 % Skill text section, each skill must have a value between 0 an 6
-%% \skillstext{{lovely/4},{narcissistic/3}}
+
 
 %----------------------------------------------------------------------------------------
 
@@ -71,8 +71,8 @@
 
 \section{interests}
 
-An likes to find why to problem, thus like mathematics and physics. Also, computer is another tool which bring us much closer to the truth. 
-During amateur time, he likes reading, music, games
+An likes to find why to problem, thus like mathematics and physics. Computer is another tool which brings us much closer to the truth. 
+During amateur time, he likes reading, music and games
 
 %----------------------------------------------------------------------------------------
 %	 EDUCATION
@@ -81,8 +81,8 @@ During amateur time, he likes reading, music, games
 \section{education}
 
 \begin{twenty} % Environment for a list with descriptions
-  \twentyitem{2008-2011}{Master of Physics}{Fudan University}{Program in Single ion facility}
-  \twentyitem{2003-2007}{Bachelor of Mechanics}{Fudan University}{Major in Fluid Mechanics}
+  \twentyitem{2008-2011}{Master of Physics}{Fudan University, Shanghai, China}{Program in Single ion facility}
+  \twentyitem{2003-2007}{Bachelor of Mechanics}{Fudan University, Shanghai, China}{Major in Fluid Mechanics}
 
 	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
 \end{twenty}
@@ -94,16 +94,6 @@ During amateur time, he likes reading, music, games
 %%%%%%%%%TWENTY LIST SHORTITEMS%%%%%%%%%%%%%%
 %%% Two arguments: date; title/description %%%%%%%%%%
 
-%----------------------------------------------------------------------------------------
-%	 AWARDS
-%----------------------------------------------------------------------------------------
-
-\section{awards}
-
-\begin{twentyshort} % Environment for a short list with no descriptions
-	\twentyitemshort{2015}{Outstanding staff at Altair}
-	%\twentyitemshort{<dates>}{<title/description>}
-\end{twentyshort}
 
 %----------------------------------------------------------------------------------------
 %	 EXPERIENCE
@@ -113,10 +103,10 @@ During amateur time, he likes reading, music, games
 
 \begin{twenty} % Environment for a list with descriptions
   \twentyitem{since 2016}{self employed}{Shanghai}{offering Paas service based on HPC}
-  \twentyitem{2014-2016}{Senior consultant of HPC(High performance compute)}{Altair Ltd}{ Offering High Performance Computing solution to OEMs}
-  \twentyitem{2011-2013}{Engineering Consultant}{Altair Ltd}{develop processes for CAE}
-  \twentyitem{2008-2011}{Master}{Fudan University}{use Geant4 toolkit (C++) to simulate the behavior of single ion facility}
-  \twentyitem{2007-2008}{Bachelor}{Fudan University}{Use matlab to simulate pressure of cabled-bridge while turbulence}
+  \twentyitem{2013-2016}{Senior Engineer}{Altair Ltd, Shanghai, China}{Optimize,design process from HPC workflow}
+  \twentyitem{2011-2013}{Engineering Consultant}{Altair Ltd, Shanghai, China}{Offering tools/process/platform for customs}
+  \twentyitem{2008-2011}{Master}{Fudan University, Shanghai, China}{Simulation single-ion beam behavior with Geant4 C++ toolkit provide by CERN}
+  \twentyitem{2007-2008}{Bachelor}{Fudan University, Shanghai, China}{Cabled-bridge turbulence simulation and analyze with matlab}
 	%\twentyitem{<dates>}{<title>}{<location>}{<description>}
 \end{twenty}
 
@@ -124,37 +114,52 @@ During amateur time, he likes reading, music, games
 %	 OTHER INFORMATION
 %----------------------------------------------------------------------------------------
 
-\section{other information}
+\section{Reviews}
+\footnotesize
+\subsection{{\small software solutions}}
+An developed several Platform from customs, there he get familiar with Agile \& and scrum methodologies, which provides the ability from incrementally development of softwares
+Project including:
 
-\subsection{Review}
+  \begin{itemize}
+  \item Rapid modeling system for automobile
+  \item Crash report automatic generation for automobile
+  \item Platform developed for lokomobile
+  \end{itemize}
 
-An joined altair as a mechanics engineer fisrtly offers enterprise work to OEMs, there he get familiar with
-how program manages, and how team could efficiently worked together on the same target
+\subsection{{\small HPC solutions}}
+After that, An get familiar with Linux and parallel system through High performance Computing, such as PBS professional, IBM lsf as well as slurm, along with a lot of MPI processes such as platform-mpi and intel mpi, analysing the bottleneck of traditionally HPC. 
+Project Including:
 
-{\small \begin{itemize}
-  \item Crash report automatic generation for either  simulation data set or experimental
-  \item Rapid Modeling process design to improve efficiency
-\end{itemize}}
+  \begin{itemize}
+  \item Fluent auto checkpoint  stop/restart
+  \item Fastran parallel optimizing
+  \item Simple GUI client based on QT
+  \end{itemize}
 
-
-then due to his knowlegde to programming and Linux, he moved to department which focus on scientific caculation.
-Here he first known web application, front-end and back-end of the interfaces.
+\subsection{{\small HPC enterprise}}
+Then, An focused the solutions to HPC, worked together which engineers of web applications, sqls. 
+Project including:
 {\small
-\begin{itemize}
-  \item analyse mpi jobs to improve it's efficiency
-  \item develop processing for those support checkpoint
-  \item trying to integrate the processing to other domain other than manufacture (EDA / Chemistry )
-  \item Remote Visualization for HPC (Altair Display Manager)
-  \item Cooperate with Web Application Engineer to develop new feature to improve user experience
-  \item develop variety tools to improve HPC solution based on PBS professional and Compute Manager
-\end{itemize}}
+  \begin{itemize}
+  \item Integrating web authetication with cluster 
+  \item Integrating cluster management with web-portals
+  \item Analyse tools of the HPC cluster usage monitors
+  \item Software visualization solutions for clusters.
+  \end{itemize}
+}
 
-after that, he realize that cloud computing is booming, mean while Altair announced that PBS Professional goes opensourced. And focus on digest the deep requires stems from customs. 
-{\small \begin{itemize}
-\item develop a simple load balance system for windows cluster (python)
-\item analyse the HPC data  to find bottleneck of the IaaS
-\item compares Cluster (HPC) with big data (Hadoop etc.), trying to find a bridge connect those two.
-\end{itemize}}
+\subsection{{\small bigdata}}
+
+Now, An started to look into bigdata technologies, such as Celery.
+wrote a simple schedule system in Python can work across platform both on Windows and Linux. 
+
+Additionally, An spending a lot of time in pursuiting pricinple of programing. studying lisp (SICP), algrithom (TAOCP).
+
+
+
+
+
+
 
 
 
