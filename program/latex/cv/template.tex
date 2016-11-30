@@ -18,9 +18,14 @@
 %----------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
 %----------------------------------------------------------------------------------------
-
 \documentclass[letterpaper]{twentysecondcv} % a4paper for A4
 
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=blue,
+	pdfborder={0 0 0}
+}
 %----------------------------------------------------------------------------------------
 %	 PERSONAL INFORMATION
 %----------------------------------------------------------------------------------------
@@ -35,7 +40,7 @@
 \cvdate{Apr 23th,1986} % Date of birth
 \cvaddress{Shanghai/China} % Short address/location, use \newline if more than 1 line is required
 \cvnumberphone{+86-13764401743} % Phone number
-\cvsite{http://github.com/sourceonly} % Personal website
+\cvsite{\url{http://github.com/sourceonly}} % Personal website
 \cvmail{sourceonly@gmail.com} % Email address
 
 %----------------------------------------------------------------------------------------
@@ -151,7 +156,7 @@ Projects including:
 \subsection{{\small bigdata}}
 
 Now, An started to look into bigdata technologies, such as Celery.
-Wrote a simple schedule system in Python can work across platform both on Windows and Linux. 
+Wrote a \href{https://github.com/sourceonly/program/tree/gh-pages/program/python/py-batch-system}{simple schedule system in Python} can work across platform both on Windows and Linux. 
 
 Additionally, An spends a lot of time in pursuiting pricinple of programing and studying lisp (SICP) and algrithom (TAOCP).
 
