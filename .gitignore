@@ -96,6 +96,7 @@ ENV/
 # tex template file 
 *.log
 *.aux
+*.dvi 
 
 # emacs temp file 
 *~
