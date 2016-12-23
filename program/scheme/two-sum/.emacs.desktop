@@ -1,0 +1,47 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Fri Dec 23 16:28:05 2016
+;; Desktop file format version 206
+;; Emacs version 24.5.1
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (22620 57365 712739 958000) (desktop . "206") "source@source" nil nil ((((font-backend xft x) (font . "-unknown-DejaVu Sans Mono-normal-normal-normal-*-19-*-*-*-m-0-iso10646-1") (font-parameter) (border-width . 0) (internal-border-width . 0) (right-divider-width . 0) (bottom-divider-width . 0) (vertical-scroll-bars) (foreground-color . "#657b83") (background-color . "#fdf6e3") (mouse-color . "#31363b") (border-color . "#eee8d5") (screen-gamma) (line-spacing) (left-fringe . 11) (right-fringe . 11) (scroll-bar-foreground . "#31363b") (scroll-bar-background . "grey75") (menu-bar-lines . 1) (tool-bar-lines . 0) (title) (wait-for-wm . t) (fullscreen) (tool-bar-position . top) (icon-type . t) (auto-raise) (auto-lower) (cursor-type . box) (scroll-bar-width . 0) (alpha) (horizontal-scroll-bars . t) (display-type . color) (background-mode . light) (cursor-color . "#586e75") (sticky) (environment) (frameset--id . "0FB7-B9BD-65B8-0DE7") (frameset--mini t . t) (height . 29) (width . 80) (modeline . t) (minibuffer . t) (unsplittable) (left . 172) (top . 0) (icon-name) (visibility . t) (display . ":0") (explicit-name)) ((min-height . 4) (min-width . 10) (min-height-ignore . 3) (min-width-ignore . 4) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 92) (min-pixel-width . 110) (min-pixel-height-ignore . 69) (min-pixel-width-ignore . 44) (min-pixel-height-safe . 23) (min-pixel-width-safe . 22)) leaf (pixel-width . 902) (pixel-height . 644) (total-width . 82) (total-height . 28) (normal-height . 1.0) (normal-width . 1.0) (buffer "two-sum.scm" (selected . t) (hscroll . 0) (fringes 11 11 nil) (margins nil) (scroll-bars 0 0 t nil) (vscroll . 0) (dedicated) (point . 603) (start . 400))))])
+(setq comint-input-ring nil)
+(setq compile-history nil)
+(setq desktop-missing-file-warning nil)
+(setq dired-regexp-history nil)
+(setq extended-command-history '("^shell" "^ielm" "^linum-mode" "slime" "smex-initialize" "^smex" "^he" "^make" "^she" "^eval-buffer" "^set" "^set-mar" "shell" "^python-mode" "^shell-" "^sh" "^" "^key" "^python" "python"))
+(setq face-name-history nil)
+(setq file-name-history '("/home/source/program/program/program/scheme/two-sum/" "~/program/program/program/scheme/two-sum/two-sum.scm" "/tmp/test/fact.scm" "~/tex/dist/tex/tex.web" "~/program/program/program/scheme/two-sum/two-sum.tex" "~/program/program/program/scheme/swap-pair/swap-pair.tex" "~/program/program/program/scheme/swap-pair/swap-pair.scm" "~/program/program/program/scheme/two-sum/two-sum.scm" "~/program/program/program/scheme/highly-abundant-numbers/high-abundant-number.tex" "~/program/program/program/scheme/highly-abundant-numbers/high-abundant-number.scm" "~/program/program/program/scheme/highly-abundant-numbers/high-abundant-number." "/home/source/program/program/program/scheme/highly-abundant-numbers/high-abundant-number.scm" "/home/source/program/program/program/scheme/swap-pair/swap-pair.scm" "/home/source/program/program/program/scheme/swap-pair/swap-pair.tex" "/home/source/program/program/program/scheme/two-sum/two-sum.scm" "/usr/share/guile/2.0/" "~/test/exam.log" "~/test/exam.tex" "~/.emacs.d/init.el" "~/.emacs.d/.emacs.desktop" "/tmp/test/t.cc" "/tmp/test.cc" "/tmp/abc" "/home/source/.emacs.d/.emacs.desktop" "/home/source/.emacs.d/init.el" "/tmp/a.py" "/home/source/a.py" "/usr/share/guile/2.0/ice-9/readline.scm" "~/test/commands/command1" "~/test/exam.pdf" "/tmp/a.c" "/home/source/test/commands/command1" "/usr/share/guile/2.0/ice-9/" "/usr/share/guile/2.0/ice-9/threads.scm" "/usr/share/guile/2.0/ice-9/popen.scm" "~/test.tex" "~/test.pdf" "/home/source/test.tex" "/home/source/.emacs" "/home/source/" "/tmp/akonadi-source.ZPmK97/a.el"))
+(setq grep-find-history nil)
+(setq grep-history nil)
+(setq ido-buffer-history nil)
+(setq ido-last-directory-list nil)
+(setq ido-work-directory-list nil)
+(setq ido-work-file-list nil)
+(setq ivy-history '("two-sum.scm" "*shell*" "two-sum.scm" "*shell*" "two-sum.scm" "o-sum.scm" "*shell*" "two-sum.scm" "*shell*" "two-sum.scm" "fact.scm" "gnome-terminal.wrapper" "scheme" "e " "high-abundant-number.scm" "high-abundant-number.tex" "gh-abundant-number" "*shell*" "high-abundant-number.pdf" "two-sum.scm" "swap-pair.scm" "swap-pair.tex" "swa" "swap-pair/" "t.cc" "g++" "switch-window-then-split-right" "close-font" "test.cc" ".out" "akonadi-source.j5YTta/" "smex" "smex-initialize" "exam.tex" "exam" "*Ibuffer*" "exam.pdf" "command1" "test.tex" "test.pdf" "st" "python-indent-levels" "#" "Search..."))
+(setq minibuffer-history nil)
+(setq query-replace-history '("divisor" "dividor"))
+(setq read-expression-history '("wq" "(smex)" "(provide 'auctex)" "(require 'auctex)" "python-indent-levels"))
+(setq regexp-history nil)
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq search-ring '("tes" "g+" "thread" "open-pipe" "tab" "b"))
+(setq shell-command-history nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 206
+  "/home/source/program/program/program/scheme/two-sum/two-sum.scm"
+  "two-sum.scm"
+  'scheme-mode
+  '(anzu-mode global-auto-revert-mode undo-tree-mode page-break-lines-mode whole-line-or-region-mode hes-mode whitespace-cleanup-mode auto-compile-on-load-mode immortal-scratch-mode projectile-mode guide-key-mode company-mode ivy-mode counsel-mode flycheck-mode goto-address-prog-mode paredit-everywhere-mode bug-reference-prog-mode diff-hl-mode highlight-symbol-mode rainbow-delimiters-mode indent-guide-mode)
+  603
+  '(304 nil)
+  nil
+  nil
+  '((buffer-file-coding-system . undecided-unix) (overwrite-mode)))
+

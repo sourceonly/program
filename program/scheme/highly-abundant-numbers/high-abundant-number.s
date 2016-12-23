@@ -1,5 +1,3 @@
-#!/usr/bin/guile -s
-!#
 (define (find-divisor p)
   (define (find-divisor-iter p current divisor-list)
     (cond ((eq? current 0) divisor-list)
