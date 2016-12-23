@@ -13,6 +13,9 @@
 	       (get-most-time-cons-iter cme cmc (car p-list) 1 (cdr p-list))))))
   (get-most-time-cons-iter (car p-list) 0 (car p-list) 0 p-list))
 
+
+(define test-list '(a a a a a a a a b b b b b b b b b c d d e e e e f f f f f f f f f f f ))
+(display test-list)
 (newline)
-(display (get-most-time-cons '(a a a a a a a a b b b b b b b b b c d d e e e e f f f f f f f f f f f )))
+(display (get-most-time-cons test-list))
 (newline)

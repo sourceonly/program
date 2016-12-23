@@ -1,0 +1,7 @@
+(define (map-append a p-list)
+  (map (lambda (x)
+         (if (null? x)
+             '()
+             (cons a x)
+             )) p-list)
+  )
