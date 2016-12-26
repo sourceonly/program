@@ -1,0 +1,15 @@
+(define (remove-dup p-list max-count)
+  (define (remove-dup-iter p-list max-count current-count current-elem)
+    (cond ((null? p-list) '())
+          ((eq? (car p-list) current-elem)
+           (if (> max-count current-count)
+               (cons (car p-list) (remove-dup-iter (cdr p-list) max-count (+ current-count 1) current-elem) )
+               (remove-dup-iter (cdr p-list) max-count current-count current-elem))
+           )
+          (else (cons (car p-list) (remove-dup-iter (cdr p-list) max-count 1 (car p-list))))
+
+          )
+
+    )
+  (remove-dup-iter p-list max-count 0 (car p-list))
+  )
