@@ -37,15 +37,21 @@ j_id.update({'jobid':jobid+1})
 print jobid
 
 job={}
-job['jobname']='ABC'
+job['jobname']=sys.argv[1];
 job['jobid']=jobid
-job['cpus']=2
-job['cmd']='python test_this.py'
+job['cpus']=int(sys.argv[2]);
+job['priority']=int(sys.argv[3])
+job['group']=sys.argv[4]
+job['nastran_run']=int(sys.argv[5]);
+job['cmd']=' '.join(sys.argv[6:]);
 job['status']='Queue'
-job['priority']=int(sys.argv[1])
+job['pid']=''
+job['Exit_Status']=''
+
 
 if __name__=="__main__":
 	q.put(job)
+        sys.exit(jobid);
 
 
 

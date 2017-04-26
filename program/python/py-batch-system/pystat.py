@@ -1,5 +1,7 @@
+#!/usr/bin/python
 from multiprocessing import Process, Queue
 from multiprocessing.managers import BaseManager
+import sys
 import subprocess
 
 import config
@@ -33,7 +35,21 @@ m.connect()
 if __name__=="__main__":
 	q=m.get_joblist();
 	p=q.__deepcopy__(10);
-	for i in p:
+        
+        id_list=sys.argv[1:];
+
+
+        key_list=[]
+        if len(id_list)==0:
+                key_list=p.keys();
+        else:
+                for i in id_list:
+                        id=int(i);
+                        if id in p.keys():
+                                key_list.append(id);
+
+        for i in key_list:
+        
 		print "jobid:",i
 		keys=p[i].keys()
 		keys.sort()

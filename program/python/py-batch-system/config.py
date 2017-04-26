@@ -12,6 +12,10 @@ class config:
 		if not self.dict.has_key(key):
 			return 	
 		return self.dict[key]
+        def get_value_list(self,key):
+                if not self.dict.has_key(key):
+                        return
+                return self.dict[key].split(',')
 			
 		
 

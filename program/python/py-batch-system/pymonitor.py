@@ -4,12 +4,13 @@ from multiprocessing import Queue
 import config
 import time
 import copy
+import gc
 
 conf=config.config('config')
 server=conf.get_value('server')
 port=int(conf.get_value('port'))
 authkey=conf.get_value('authkey')
-
+sched_cycle=float(conf.get_value('sched_cycle'))
 
 class QueueManager(BaseManager): pass
 
@@ -23,8 +24,7 @@ QueueManager.register('get_jobid'       )
 QueueManager.register('get_joblist'     )
 QueueManager.register('get_queue_mess'  )
 
-
-m=QueueManager(address=(server,port),authkey=authkey)
+m=QueueManager(address=(server,port),authkey=authkey);
 m.connect();
 
 
@@ -47,21 +47,24 @@ while True:
 		job_shadow=copy.deepcopy(job);
 		job_list.update({job_shadow['jobid']:job_shadow});
 		q_qu.put((priority,job))
+        # do message
+	while (not q_mess.empty()) :
+		message=q_mess.get()
+                print 'message',message
+		for i in message: 
+			j=message[i]
+			if i=='updatejob':	
+				for k in j :
+					job_list.update({k:j[k]})
+                time.sleep(0.1);
 	
 	# do sched 
 	
+        
 	while (not q_qu.empty()) and (not q_bu.full()): 
 		pjob=q_qu.get() ; 
 		q_bu.put(pjob)  ; 
-		print pjob
+		# print pjob
 					
-	while (not q_mess.empty()) : 
-		message=q_mess.get()
-		for i in message: 
-			if i=='updatejob':	
-				j=message[i]
-				for k in j :
-					job_list.update({k:j[k]})
-				
-	
+        gc.collect()
 	time.sleep(0.1)

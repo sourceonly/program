@@ -1,5 +1,10 @@
-server=192.168.0.90
+server=10.0.0.84
 port=9001
 maxcpus=4
 authkey=12345
 sched_buffer=1
+sched_cycle=10
+working_dir=working
+customres=group,nastran_run
+group=test1
+nastran_run=int(2)

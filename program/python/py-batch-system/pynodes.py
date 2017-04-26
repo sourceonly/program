@@ -16,7 +16,6 @@ class QueueManager(BaseManager): pass
 
 
 QueueManager.register('get_res')
-
 m=QueueManager(address=(server,port),authkey=authkey)
 m.connect()
 
@@ -28,6 +27,6 @@ nodes=res.__deepcopy__(1)
 for i in nodes : 
 	print "%s" % i
 	for j in nodes[i]:	
-		print "\t%10s=%10s" % (j,nodes[i][j])
+		print "\t%20s=%20s" % (j,nodes[i][j])
 	
 
