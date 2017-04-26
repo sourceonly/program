@@ -206,13 +206,13 @@ class pycli():
 
 import gc
 
-# a=pycli(server,port,authkey,res);
-# a.serv_forever()
+a=pycli(server,port,authkey,res);
+a.serv_forever()
 
-while True:
-        try:
-                a=pycli(server,port,authkey,res);
-                a.serv_forever()
-        except:
-                pass
-        gc.collect();
+# while True:
+#         try:
+#                 a=pycli(server,port,authkey,res);
+#                 a.serv_forever()
+#         except:
+#                 pass
+#         gc.collect();

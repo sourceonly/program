@@ -23,9 +23,16 @@ QueueManager.register('get_res'         )
 QueueManager.register('get_jobid'       )
 QueueManager.register('get_joblist'     )
 QueueManager.register('get_queue_mess'  )
+QueueManager.register('get_server'      )
 
 m=QueueManager(address=(server,port),authkey=authkey);
+print dir(m);
+# print m._number_of_objects()
+# print m._number_of_objects
+print m.__dict__
+print m._Client()
 m.connect();
+
 
 
 q_in=m.get_queue_in()

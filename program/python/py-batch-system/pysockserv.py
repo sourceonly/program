@@ -44,10 +44,22 @@ QueueManager.register('get_joblist'     ,        callable=lambda: joblist     )
 import time
 
 m = QueueManager(address=(server, port), authkey=authkey)
-m.get_server().serve_forever();
+s=m.get_server()
+s.serve_forever();
+
+
+
+
+
+# import threading
+# t=threading.Thread(target=s.serve_forever,args=())
+# t.start()
+# t.join();
+
+
+
+
     
-while True:
-    time.sleep(0.1);
 # s = m.get_server()
 # s.serve_forever()
 
