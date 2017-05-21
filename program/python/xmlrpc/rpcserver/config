@@ -1,0 +1,3 @@
+tmpdir=/GPFS/felemx/tmp
+starccm=@STARCCM@ -np @NCPUS@ -machine @MPI_FILE@ @SOLVER@
+testapp=@COMMAND@ @ARGS@

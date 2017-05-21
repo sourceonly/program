@@ -1,0 +1,49 @@
+POST /RPC2 HTTP/1.0
+Content-Type: application/xml
+Content-Length: 200
+<?xml version='1.0'?>
+<methodCall>
+<methodName>run_command1</methodName>
+<params>
+<param>
+	<value><string>ls -ltr </string></value>
+</param>
+</params>
+</methodCall>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

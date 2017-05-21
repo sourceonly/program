@@ -1,0 +1,12 @@
+curl --data "<?xml version='1.0'?>
+<methodCall>
+<methodName>test_args</methodName>
+<params>
+<param>
+<value><int>5</int></value>
+</param>
+<param>
+<value><int>2</int></value>
+</param>
+</params>
+</methodCall>" localhost:8000/RPC2

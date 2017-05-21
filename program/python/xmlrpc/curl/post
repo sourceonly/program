@@ -1,0 +1,10 @@
+<?xml version='1.0'?>
+<methodCall>
+<methodName>test_args</methodName>
+<params>
+<param>
+	<value><string>ls -ltr </string></value>
+</param>
+</params>
+</methodCall>
+
