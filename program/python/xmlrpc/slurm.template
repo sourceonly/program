@@ -1,0 +1,10 @@
+#!/bin/bash
+#SBATCH -J @JOBNAME@
+#SBATCH -n @NCPUS@
+#SBATCH -p @QUEUE@
+
+HOST_LIST=$(srun hostname | sort | uniq -c | awk '{print $2":"$1}')
+echo "$HOST_LIST" > HOST_FILE
+HOST_FILE=HOST_FILE
+
+
