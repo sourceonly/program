@@ -83,7 +83,7 @@ class wxcs () :
         
     def submit_script(self,script_file,data):
 	os.chmod(script_file,0700);
-        bsub='bsub -J @JOBNAME@ -o @OUTPUT@ -q @QUEUE@ -n @NCPUS@ -appplugin %s' % (script_file,);
+        bsub='sbatch %s' % (script_file,);
         if data.has_key('cwd'):
             workdir=data['cwd'];
         else:
@@ -109,8 +109,19 @@ class wxcs () :
             a+='\n';
         return a
 
-    def make_header(self,env):
-        content="#!/bin/bash\n"
+    def make_header(self,data,env):
+        slurm_template=self.conf.get_value("slurm.template");
+        if slurm_template==None:
+            return '', "ERROR: can't figure out slurm's configuration"
+
+        f=open(slurm_template,"r");
+        content=f.read();
+        f.close();
+
+        content,err=self.make_resub(data,content);
+        if err:
+            return "",err
+        
         for i in env:
             content+="export %s=\"%s:$%s\"\n"% (i,env[i],i,)          ;
         return content,'';
@@ -120,7 +131,7 @@ class wxcs () :
 
 
     def make_submit(self,data,env):
-        content,err=self.make_header(env);
+        content,err=self.make_header(data,env);
         c,e=self.make_mpifile(data);
         content+=c;
         err+=e;
