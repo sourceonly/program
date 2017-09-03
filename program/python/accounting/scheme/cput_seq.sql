@@ -7,7 +7,7 @@ select start_time,
        INTO pbs_interval
        FROM
 (select start_time,
-       start_time + interval '1 hour' as end_time
+       start_time + interval '1 hour' - interval '1 second' as end_time
 FROM
 (select generate_series(
        '2017-01-01'::date,

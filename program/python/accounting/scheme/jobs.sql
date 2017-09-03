@@ -5,7 +5,28 @@
    other --> strings 
 */
 DROP TABLE pbs_jobs;
-SELECT jobid,
+
+select
+       jobid,
+
+       ctime,
+       stime,
+       etime,
+
+       c_epoch,
+       s_epoch,
+       e_epoch,
+
+       (e_epoch - s_epoch) * ncpus as cput,
+       s_epoch - c_epoch as queue_t,
+       ncpus,
+       puser,
+       pgroup,
+       platform,
+       software
+       INTO pbs_jobs
+       FROM
+(SELECT jobid,
 
        cast(ctime as bigint) as c_epoch,
        to_timestamp(cast(ctime as double precision)) as ctime,
@@ -21,9 +42,7 @@ SELECT jobid,
        pgroup,
        platform,
        software
-       INTO
-       pbs_jobs
-       FROM pbs_task;
+       FROM pbs_task) as tmptable ORDER BY jobid;
        
        		  
        
