@@ -68,6 +68,10 @@ ax1.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
         shadow=False, startangle=90)
 ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
+
+plt.savefig("pie1.eps",format='eps');
+
+
 # figure 2
 # software no. of task pie;
 
@@ -81,6 +85,10 @@ fig2,ax2  = plt.subplots();
 ax2.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
         shadow=False, startangle=90)
 ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+plt.savefig("pie2.eps",format='eps');
+
+
 
 
 # figure 3
@@ -98,6 +106,11 @@ ax3.pie(sizes, explode=explode, labels=labels, autopct='%1.1f%%',
         shadow=False, startangle=90)
 ax3.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
+plt.savefig("pie3.eps",format='eps');
+
+
+
+
 # figure 4  group pie of cputime
 
 group_cput_p=sort_dict(group_cput);
@@ -113,8 +126,9 @@ ax4.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
 
 
-
+plt.savefig("pie4.eps",format='eps');
 plt.show()
+
 
 
 
