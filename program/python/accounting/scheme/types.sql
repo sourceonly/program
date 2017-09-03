@@ -1,8 +1,6 @@
 select
 *
 
-
-
 from
 (select 
        (finish_day+interval '8 hour') as morning,

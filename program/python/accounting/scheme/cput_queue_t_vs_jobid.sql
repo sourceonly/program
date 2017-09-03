@@ -2,6 +2,7 @@ select
 jobid,
 cpu*(epoch_etime-epoch_stime) as cput,
 (epoch_stime-epoch_ctime) as queuet
+INTO pbs_cput
 from
 (select jobid as jobid,
 cast(ctime as bigint) as epoch_ctime,

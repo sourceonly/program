@@ -13,6 +13,8 @@ select
 	     WHEN e_time > twilight AND c_time > (morning - interval '2 day') THEN 3
 	     /* the day before yesteday submit, workhour  get result */
 	END as level
+	INTO 
+	pbs_result
 from
 (select 
        (finish_day+interval '8 hour') as morning,             /* 8:00  start work */
