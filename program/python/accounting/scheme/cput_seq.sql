@@ -26,8 +26,12 @@ select *
 	where
 		(i.start_time, i.end_time) OVERLAPS (j.stime,j.etime);
 
+DROP TABLE pbs_breakdown_cput;
+select start_time,jobid,stime,(least(ie_epoch,e_epoch)-greatest(is_epoch,s_epoch))*ncpus as i_cput INTO pbs_breakdown_cput from pbs_breakdown ;
 
+DROP TABLE pbs_breakdown_full;
 
+select p.*,q.i_cput INTO pbs_breakdown_full from pbs_breakdown as p INNER JOIN pbs_breakdown_cput as q ON (p.jobid=q.jobid) AND (p.start_time=q.start_time);
 
 
 
