@@ -7,7 +7,7 @@ conn=psycopg2.connect("dbname=pbs_account user=source");
 cur=conn.cursor();
 
 
-cur.execute("select * from (select jobid, jstart,jend, (jend-jstart)*ncpus as v, ncpus from  (select jobid, cast(stime as bigint) as jstart, cast(etime as bigint) as jend , cast(ncpus as bigint ) as ncpus from pbs_task ) as p  ) as q where v>0;")
+cur.execute("select * from (select jobid, jstart,jend, (jend-jstart)*ncpus as v, ncpus from  (select jobid, cast(s_epoch as bigint) as jstart, cast(e_epoch as bigint) as jend , cast(ncpus as bigint ) as ncpus from pbs_jobs ) as p  ) as q where v>0;")
 
 value=cur.fetchall()
 cur.close()
@@ -35,7 +35,7 @@ time_max=max(max(start_time),max(end_time));
 time_min=min(min(start_time),min(end_time));
 
 
-time_slice=np.arange(time_min,time_max,3600*24*7);
+time_slice=np.arange(time_min,time_max,3600);
 def my_sub(x,y):
 	return max(y-x,0);
 
