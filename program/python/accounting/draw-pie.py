@@ -4,7 +4,15 @@ import psycopg2 as pg
 conn=pg.connect("dbname=pbs_account user=source")
 cur=conn.cursor();
 
-
+def save_data(filename,l) :
+    f=open(filename,'w');
+    for i in l:
+        l1=i[0];
+        l2=i[1];
+        f.write("%s,%s" % (l1,l2,));
+        f.write('\n')
+    f.close();
+        
 
 def get_value(sq_ex,col=0):
     cur.execute(sq_ex);
@@ -56,6 +64,9 @@ import matplotlib.pyplot as plt
 # software cput pie 
 
 cput_p=sort_dict(software_cput);
+save_data('pie1.csv',cput_p);
+
+
 labels = map(lambda x:x[0],cput_p);
 sizes=map(lambda x:x[1],cput_p);
 explode=map(lambda x:0,cput_p);
@@ -76,6 +87,9 @@ plt.savefig("pie1.eps",format='eps');
 # software no. of task pie;
 
 soft_count_p=sort_dict(software_count);
+save_data('pie2.csv',soft_count_p);
+
+
 labels = map(lambda x:x[0],soft_count_p);
 sizes=map(lambda x:x[1],soft_count_p);
 explode=map(lambda x:0,soft_count_p);
@@ -96,6 +110,9 @@ plt.savefig("pie2.eps",format='eps');
 
 
 group_count_p=sort_dict(group_count);
+save_data('pie3.csv',group_count_p);
+
+
 labels = map(lambda x:x[0],group_count_p);
 sizes=map(lambda x:x[1],group_count_p);
 explode=map(lambda x:0,group_count_p);
@@ -114,6 +131,10 @@ plt.savefig("pie3.eps",format='eps');
 # figure 4  group pie of cputime
 
 group_cput_p=sort_dict(group_cput);
+
+save_data('pie4.csv',group_cput_p);
+
+
 labels = map(lambda x:x[0],group_cput_p);
 sizes=map(lambda x:x[1],group_cput_p);
 explode=map(lambda x:0,group_cput_p);
