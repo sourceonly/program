@@ -32,12 +32,16 @@ cput=map(lambda x:x[0]/3600,cput_array);
 save_data('cput_1h.csv',cput_array);
 
 
+cur.close();
+conn.close();
+
 import matplotlib.pyplot as plt;
 fig1,ax1  = plt.subplots();
 ax1.plot(time_axis,cput);
 ax1.grid(True);
 
 plt.savefig("cput.eps",format='eps');
+
 
 plt.show();
 
