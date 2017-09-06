@@ -52,6 +52,8 @@ fig1,ax1  = plt.subplots();
 ax1.plot(time_axis1,queue_cpu+max_cpu,'y');
 ax1.plot(time_axis1,max_cpu,'r');
 ax1.plot(time_axis2,run_cpu,'b');
+
+
 ax1.grid(True);
 
 plt.savefig("run_cpu_vs.eps",format='eps');
