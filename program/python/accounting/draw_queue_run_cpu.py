@@ -28,6 +28,7 @@ def save_data(filename,l) :
 queue_array=get_value_all("select ncpus_q, start_time from pbs_interval_full ORDER BY start_time")
 run_array=get_value_all("select ncpus_r, start_time from pbs_interval_full ORDER BY start_time");
 
+max_array=get_value_all("select max_cpu,start_time from pbs_interval_full ORDER BY start_time");
 
 save_data("queue_cpu_vs_time.csv",queue_array);
 save_data("run_cpu_vs_time.csv",run_array);
@@ -40,14 +41,16 @@ time_axis2=map(lambda x:x[1],run_array);
 run_cpu  =np.array(map(lambda x: x[0] if x[0] else 0 ,run_array));
 
 
+max_cpu=np.array(map(lambda x:x[0] if x[0] else 0, max_array))
+
 
 cur.close()
 conn.close()
 
 import matplotlib.pyplot as plt;
 fig1,ax1  = plt.subplots();
-ax1.plot(time_axis1,queue_cpu+run_cpu,'r');
-
+ax1.plot(time_axis1,queue_cpu+max_cpu,'y');
+ax1.plot(time_axis1,max_cpu,'r');
 ax1.plot(time_axis2,run_cpu,'b');
 ax1.grid(True);
 

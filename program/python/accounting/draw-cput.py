@@ -24,12 +24,16 @@ def save_data(filename,l) :
 
 
 
-cput_array=get_value_all("select sum(i_cput),start_time from pbs_breakdown_full group by start_time order by start_time")
+cput_array=get_value_all("select sum(i_cput),start_time,avg(max_cpu) from pbs_breakdown_full group by start_time order by start_time")
 
 time_axis=map(lambda x:x[1],cput_array);
 cput=map(lambda x:x[0]/3600,cput_array);
+max_cput=map(lambda x:x[2],cput_array);
+
 
 save_data('cput_1h.csv',cput_array);
+
+
 
 
 cur.close();
@@ -40,6 +44,7 @@ fig1,ax1  = plt.subplots();
 ax1.plot(time_axis,cput);
 ax1.grid(True);
 
+ax1.plot(time_axis,max_cput,'r');
 plt.savefig("cput.eps",format='eps');
 
 

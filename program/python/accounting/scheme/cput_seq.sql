@@ -3,7 +3,11 @@ DROP TABLE pbs_interval;
 select start_time,
        end_time,
        EXTRACT('epoch' from start_time) as is_epoch,
-       EXTRACT('epoch' from end_time) as ie_epoch
+       EXTRACT('epoch' from end_time) as ie_epoch,
+       case WHEN end_time < cast('2017-04-01' as timestamp) THEN 372
+       	    WHEN start_time > cast('2017-04-01' as timestamp) THEN 992
+	    END
+	     as max_cpu
        INTO pbs_interval
        FROM
 (select start_time,
