@@ -1,0 +1,7 @@
+\contentsline {chapter}{\numberline {1}Create Dual-Bootable Grub2 bootable Usb-stick}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}How to boot linux live-cd directory from Grub2}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Preparation}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Boot with Grub ...}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Get real root ready}{4}{section.2.3}
+\contentsline {section}{\numberline {2.4}Before switch root ...}{5}{section.2.4}
+\contentsline {section}{\numberline {2.5}Finally}{5}{section.2.5}

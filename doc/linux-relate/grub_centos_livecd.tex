@@ -1,0 +1,155 @@
+\chapter{How to boot linux live-cd directory from Grub2}
+This document provide the way to chainload an iso-file (Live CD iso) from either floppy or hardisk, without unpacking it. I used the Centos-Live CD
+
+\section{Preparation}
+
+Grub bootable USB-stick:
+\begin{lstlisting}
+  #fdisk -l /dev/sdb
+  Disk /dev/sdb: 3.8 GiB, 4023385600 bytes, 7858175 sectors
+  Units: sectors of 1 * 512 = 512 bytes
+  Sector size (logical/physical): 512 bytes / 512 bytes
+  I/O size (minimum/optimal): 512 bytes / 512 bytes
+  Disklabel type: gpt
+  Disk identifier: 3C5D7777-4CAF-4C10-A1F9-BAAA9AB3CC61
+
+  Device       Start     End Sectors  Size Type
+  /dev/sdb1     2048  264191  262144  128M BIOS boot
+  /dev/sdb2   264192 1312767 1048576  512M EFI System
+  /dev/sdb3  1312768 7858141 6545374  3.1G Microsoft basic data
+\end{lstlisting}
+
+with this USB device, we can boot either in \emph{grub lecacy mode} or \emph{grub efi mode}, and have \emph{Centos Live ISO} in {\ttfamily /dev/sdb3}
+
+\begin{lstlisting}
+  # mount /dev/sdb3 /mnt
+  # ls -ltr /mnt
+  total 2263064
+  -rw-r--r--  1 source source 1793064960 Dec  2 22:26 CentOS-7-x86_64-LiveKDE-1708.iso
+  drwxr-xr-x  2 source source       4096 Dec  3 10:37 System Volume Information
+  drwxr-xr-x  3 source source       4096 Dec  3 23:36 centos
+  drwxr-xr-x  2 source source       4096 Dec  3 23:37 squash
+  drwxr-xr-x  2 source source       4096 Dec  3 23:38 ext3
+  drwxr-xr-x 17 source source       4096 Dec  3 23:40 root
+  -rw-r--r--  1 source source  524288000 Dec  4 03:23 cowfile.out
+  -rw-r--r--  1 source source        488 Dec  4 03:27 get_root_ready
+\end{lstlisting}
+
+
+\section{Boot with Grub ...}
+During start up, press enter to select from boot device, here either lecacy mode or efi mode would work. As we don't have any \ttfamily{grub.cfg} file to customize menu, we only have \emph{grub command line interface}, if you have a customized grub menu, as it said, hit 'c' to enter \emph{grub command line interface}
+
+\begin{lstlisting}
+  grub> 
+\end{lstlisting}
+
+First of all, we need to make the iso file as a loop device in grub2, feel free to use \emph{Tab} to give you some hints. 
+\begin{lstlisting}
+  grub> loopback loop0 (hd0,gpt3)/CentOS-7-x86_64-LiveKDE-1708.iso
+\end{lstlisting}
+after this, you would have a device called {\ttfamily loop0}, continue boot from command line, we don't need \emph{isolinux.bin} any more as grub2 takes over the role of it.
+\begin{lstlisting}
+  set root=(loop0)
+  linux /isolinux/vmlinuz0
+  initrd /isolinux/initrd0.img
+  boot
+\end{lstlisting}
+the boot would definately failed as \emph{initrd0.img} would actually not find it's real root. Later we can see it would fail at {\ttfamily switch-root}.
+
+now we have a minial linux enviroment within \emph{initrd0.img}, and we are trying to tell the system where the rootfs actually lies in.
+
+\section{Get real root ready}
+
+The root file system lies in \emph{ISO file}. First of all we need to find where it is, feel free to change the mount point as you wish here. 
+
+\begin{lstlisting}
+  # mkdir -p /target/usb
+  # mount /dev/sdb3 /target/usb
+  # mkdir -p /target/iso
+  # mount /target/usb/CentOS-7-x86_64-LiveKDE-1708.iso /target/iso/
+  # tree /target/iso
+  /target/iso/
+  ├── isolinux
+  │   ├── boot.cat
+  │   ├── initrd0.img
+  │   ├── isolinux.bin
+  │   ├── isolinux.cfg
+  │   ├── vesamenu.c32
+  │   └── vmlinuz0
+  └── LiveOS
+      ├── osmin.img
+      └── squashfs.img
+
+\end{lstlisting}
+
+the root file system is under {\ttfamily LiveOS/squashfs.img}, again we need to mount it manually,
+
+\begin{lstlisting}
+  # mkdir -p /target/squashfs
+  # mount /target/iso/LiveOS/squashfs.img /target/squashfs
+  # tree /target/squashfs
+  /target/squashfs/
+  └── LiveOS
+   └── ext3fs.img
+\end{lstlisting}
+
+here, unfortunately, we can't mount ext3fs.img directly, as it's a readonly file system. We can't write anything into it. Force switch-root to it would lead to a lot of errors.
+
+We need to make a snapshot of it, along with some writeable blocks. we choose \emph{loop5} and \emph{loop6} as their name. the size of output.file is up to you to choose.
+\begin{lstlisting}
+  # losetup /dev/loop5 /target/squashfs/LiveOS/ext3fs.img
+  # dd if=/dev/zero of=/dev/shm/output.file bs=8k count=20000 
+  # losetup /dev/loop6 /dev/shm/output.file
+\end{lstlisting}
+
+after this, we need to make a snapshot with \emph{loop5} and \emph{loop6}, where \emph{loop6} stores actually file changes.
+
+\begin{lstlisting}
+  # echo "@\$@(blockdev --getsize /dev/loop5) snapshot \
+  /dev/loop5 /dev/loop6 p 64" | dmsetup create rootfs
+\end{lstlisting}
+
+now we have a snapshot of it, it's out readable and writable device , mount it somewhere
+\begin{lstlisting}
+  # ls /dev/dm-0
+  # mkdir -p /target/rootfs
+  # mount /dev/dm-0 /target/rootfs
+\end{lstlisting}
+
+
+  
+\section{Before switch root ...}
+Hold on and take a deep breath, don't be too overjoyed to switch\_root now, you would never login with the new user root, as you don't known it's passwd.
+so we need to settle it before it goes bad. The easist way to do this is using chroot. 
+\begin{lstlisting}
+  # chroot /target/rootfs
+  # passwd
+  < type in your passwd for root>
+  # useradd test1
+  # passwd test1
+  < type in your passwd for test1>
+\end{lstlisting}
+
+turn off selinux
+
+\begin{lstlisting}
+  # vi /etc/sysconfig/selinux  
+  <change selinux to disabled>
+  
+\end{lstlisting}
+
+if you don't want turn off selinux, trying following way.
+\begin{lstlisting}
+  # touch /.autorelabel
+\end{lstlisting}
+here we have user root/test1, and the creditial you know. After doing this, hit \emph{Ctrl-D} to exit chroot. 
+
+\section{Finally}
+Finally,  all is done. let's go back to where switch root fails. you can refer to \emph{/usr/lib/systemd/system/initrd-switch-root.service} for the execution command. 
+\begin{lstlisting}
+  #  /usr/bin/systemctrl --no-block --force switch-root /target/rootfs
+\end{lstlisting}
+
+enjoy! 
+\cleardoublepage
+
