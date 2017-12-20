@@ -1,0 +1,86 @@
+\chapter{Install CentOS 7 from debian}
+In this section we would descript how to install a new CentOS from debian
+\section{Why}
+because i use debian personlly, and need do some test on centos, I'm not sophisticated on \emph{Xen}, \emph{KVM} or other tech. I would need old and always work ways, reboot and then select your system.
+\section{Require}
+Here, we assume (that what is it on my labtop}
+\begin{enumerate}
+\item you use lvm, and have enough diskspace
+\item you have network connection, though both {\ttfamily apt } and {\ttfamily yum} would work. 
+\end{enumerate}
+
+\bold{Debian} use {\ttfamily dpkg/apt} to manage it's packages, while CentOS use {\ttfamily rpm/yum}, luckily enough, we also have {\ttfamily rpm/yum} in debian repository
+
+we need to install it
+\begin{lstlisting}
+ #  apt-get -y install yum 
+\end{lstlisting}
+and add a repository,  here we use \url{http://mirrors.163.com/centos}(which is also my debian repository, here the path is slightly different from centos, which is {\ttfamily /etc/yum/repos.d} rather than {\ttfamily /etc/yum.repos.d}
+\begin{lstlisting}
+  #  cat /etc/yum/repos.d/base.repo
+  [base]
+  name=os
+  baseurl=http://mirrors.163.com/centos/7.4.1708/os/x86_64
+  gpgcheck=0
+  enable=1
+\end{lstlisting}
+
+\section{Install CentOS 7 ... }
+We can get the job done really directly
+\subsection{Create \emph{root fs}}
+To make things simple, we use \emph{lvm} to create rootfs dev , here \emph{vg} is my \emph{lv} which have more than \emph{50g} free space
+\begin{lstlisting}
+  #  lvcreate -L50g -n centos vg
+  #  mkfs.ext4 /dev/mapper/vg-centos
+  #  mkdir -p /centos
+  #  mount /dev/mapper/vg-centos /centos
+\end{lstlisting}
+
+\subsection{Install system with yum ...}
+Make yum happy..
+\begin{lstlisting}
+  # yum --installroot=/centos makecache
+  # yum --installroot=/centos install yum
+  # yum --nogpgcheck --installroot=/centos install @core kernel
+\end{lstlisting}
+
+if you are trying in LiveCD, you'd better install grub, here we already have grub2 on my disk along with debian
+\begin{lstlisting}
+  # yum --installroot/centos install grub2
+\end{lstlisting}
+here we just run \emph{update-grub}, it would auto detect centos presents
+\begin{lstlisting}
+  # update-grub
+  Found background image: /usr/share/images/desktop-base/desktop-grub.png
+  Found linux image: /boot/vmlinuz-4.14.0-1-amd64
+  Found initrd image: /boot/initrd.img-4.14.0-1-amd64
+  Found linux image: /boot/vmlinuz-3.16.0-4-amd64
+  Found initrd image: /boot/initrd.img-3.16.0-4-amd64
+  Found CentOS Linux 7 (Core) on /dev/mapper/vg-centos
+  Adding boot menu entry for EFI firmware configuration
+\end{lstlisting}
+\subsection{configuation}
+It's important! Otherwise you can't login to you system.
+{\ttfamily chroot} would help use do this other than edit passwd file
+\begin{lstlisting}
+  chroot /centos
+\end{lstlisting}
+turn off selinux, edit /etc/sysconfig/selinux
+\begin{lstlisting}
+  selinux=disabled
+\end{lstlisting}
+
+change passwd for root
+\begin{lstlisting}
+  passwd
+  
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
