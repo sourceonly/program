@@ -1,7 +1,7 @@
-\contentsline {chapter}{\numberline {1}Create Dual-Bootable Grub2 bootable Usb-stick}{1}{chapter.1}
-\contentsline {chapter}{\numberline {2}How to boot linux live-cd directory from Grub2}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Preparation}{3}{section.2.1}
-\contentsline {section}{\numberline {2.2}Boot with Grub ...}{4}{section.2.2}
-\contentsline {section}{\numberline {2.3}Get real root ready}{4}{section.2.3}
-\contentsline {section}{\numberline {2.4}Before switch root ...}{5}{section.2.4}
-\contentsline {section}{\numberline {2.5}Finally}{5}{section.2.5}
+\contentsline {chapter}{\numberline {1}Install CentOS 7 from debian}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Why}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Require}{1}{section.1.2}
+\contentsline {section}{\numberline {1.3}Install CentOS 7 ... }{1}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Create \emph {root fs}}{2}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}Install system with yum ...}{2}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}configuation}{2}{subsection.1.3.3}
