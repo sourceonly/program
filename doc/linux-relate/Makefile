@@ -7,4 +7,4 @@ pdf:	*tex
 	dvipdfmx main
 .PHONY:
 clean:
-	-rm -rf *log *aux *dvi *pdf *~ main.tex
+	-rm -rf *log *aux *dvi *pdf *~ main.tex *toc *out
