@@ -1,0 +1,109 @@
+\chapter{Connect l2tp-ipsec vpn with Debian}
+
+Here is only the memo of the client configuration
+
+
+\section{Ipsec}
+We have several choice of it, a typical work one is \ttfamily{libreswan}, with it's executable \ttfamily{pluto}
+
+\begin{lstlisting}
+  cat /etc/ipsec.d/myvpn.conf
+  conn	myvpn
+	authby=secret
+	#pfs=no
+	#rekey=no
+	left=%defaultroute
+	right=<ip of the server>
+	rightid=<id of the server, if failed, the id should in the failed log>
+	leftprotoport=17/1701
+	rightprotoport=17/1701
+	#dpddelay=15
+	#dpdtimeout=30
+	auto=start
+
+ cat /etc/ipsec.d/myvpn.secrets
+        % ANY :PSK "<you-pre-shared-key>"
+\end{lstlisting}
+
+\section{xl2tpd configure}
+
+it should at least contain the following
+\begin{lstlisting}
+  cat /etc/xl2tpd/xl2tpd.conf
+  [lac <you connect name>]
+  name=<you connect name>
+  lns=<server-ip-or-hostname>
+  pppoptfile=/etc/ppp/peers/myppp.l2tpd
+  ppp debug=yes
+\end{lstlisting}
+
+in \ttfamily{/etc/ppp/peers/myppp.l2tpd}
+\begin{lstlisting}
+remotename <you-vpn-name>
+user <you-name>
+password <you-passwd>
+unit 0
+nodeflate
+nobsdcomp
+noauth
+persist
+nopcomp
+noaccomp
+maxfail 5
+
+\end{lstlisting}
+
+\section{do connecting}
+you should at least start up ipsec
+\begin{lstlisting}
+  ipsec restart
+\end{lstlisting}
+
+if you are with \ttfamily{auto=add}, you need to add the tunnel manually
+\begin{lstlisting}
+  ipsec auto --add <you_tunnel>
+  ipsec auto --up <you_tunnel>
+\end{lstlisting}
+
+startup xl2tpd
+\begin{lstlisting}
+  systemctrl restart xl2tpd
+\end{lstlisting}
+
+after that you need to connect to it
+\begin{lstlisting}
+  # connect
+  echo "c <you-vpn-name>" > /var/run/xl2tpd/l2tp-control
+  # disconnect
+  echo "d <you-vpn-name>" > /var/run/xl2tpd/l2tp-control   
+\end{lstlisting}
+
+
+\section{Configure route}
+
+After all is done, you would get a new interface such as \emph{ppp0} or similarly, but the default gw sucks, to check VPN works find, you can ping with interfaces
+\begin{lstlisting}
+  ping -I ppp0 <internal-ip>
+\end{lstlisting}
+
+
+
+To make thing much happier, add ppp0 as the default route within VPN
+\begin{lstlisting}
+  route add -net <internal-net> mask <internal-mask> dev ppp0 
+\end{lstlisting}
+
+now you can directly ping or with any application you like
+\begin{lstlisting}
+  ping <internal-ip>
+  ssh <internal-ip>
+  ...
+\end{lstlisting}
+
+
+
+
+
+
+
+
