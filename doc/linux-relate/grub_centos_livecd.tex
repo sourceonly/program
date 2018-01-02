@@ -105,7 +105,7 @@ We need to make a snapshot of it, along with some writeable blocks. we choose \e
 after this, we need to make a snapshot with \emph{loop5} and \emph{loop6}, where \emph{loop6} stores actually file changes.
 
 \begin{lstlisting}
-  # echo "@\$@(blockdev --getsize /dev/loop5) snapshot \
+  # echo "0 @\$@(blockdev --getsize /dev/loop5) snapshot \
   /dev/loop5 /dev/loop6 p 64" | dmsetup create rootfs
 \end{lstlisting}
 
